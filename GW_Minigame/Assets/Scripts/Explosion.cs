@@ -19,7 +19,7 @@ public class Explosion : MonoBehaviour
     {
         newScale = new Vector3(currentScale, currentScale, currentScale);
         self.transform.localScale = (newScale);
-        currentScale += 0.01f;
+        currentScale += 1f * Time.deltaTime;
         if (currentScale > 0.5f) {
             Destroy(self);
         }

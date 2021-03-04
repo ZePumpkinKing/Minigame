@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
         // Shooting cooldown checker
         if (cooldown) {
-            if (downTime < 120) {
+            if (downTime < 1 * Time.deltaTime) {
                 downTime += 1;
             } else {
                 downTime = 0;
