@@ -4,7 +4,7 @@ Bullethell Protoype
 
 Move around the screen with WASD, dodge projectiles and asteroids, shoot them to clear space.
 
-Shoot control: Spacebar, 120 frame cooldown
+Shoot control: Spacebar, 1.5 second cooldown
 
 Features:
 
