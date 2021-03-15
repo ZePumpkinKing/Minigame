@@ -16,22 +16,36 @@ public class PlayerController : MonoBehaviour
 
     private bool cooldown = true;
 
-    private int downTime = 0;
+    private float downTime = 0;
 
     private bool gameOver = false;
 
     public GameObject ship;
     public GameObject exhaust;
+    private GameObject over;
+    private GameObject score;
+    private GameObject start;
 
     private int exhaustRotation = 1;
 
     // Start is called before the first frame update
     void Start() {
-        
+        Time.timeScale = 0;
+        over = GameObject.Find("GameOver");
+        start = GameObject.Find("Start");
+        score = GameObject.Find("Score");
+        over.SetActive(false);
+        score.SetActive(false);
+        start.SetActive(true);
     }
 
     // Update is called once per frame
     void Update() {
+        if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0)) {
+            Time.timeScale = 1;
+            start.SetActive(false);
+            score.SetActive(true);
+        }
 
         // Movement
         horizontalInput = Input.GetAxis("Horizontal");
@@ -55,8 +69,8 @@ public class PlayerController : MonoBehaviour
 
         // Shooting cooldown checker
         if (cooldown) {
-            if (downTime < 1 * Time.deltaTime) {
-                downTime += 1;
+            if (downTime < 1) {
+                downTime += 1.5f * Time.deltaTime;
             } else {
                 downTime = 0;
                 cooldown = false;
@@ -95,7 +109,9 @@ public class PlayerController : MonoBehaviour
         } else {
             ship.transform.rotation = Quaternion.Euler(0, 0, horizontalInput * -20);
         }
-        
+    }
 
+    private void OnDestroy() {
+        over.SetActive(true);
     }
 }
